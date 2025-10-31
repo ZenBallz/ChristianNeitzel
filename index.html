@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Neitzel Photography - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'neue-haas-unica', Helvetica, Arial, sans-serif;
+            background: white;
+            color: black;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0%;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* Slideshow */
+        .slideshow {
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 3/4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .2s ease-in-out;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        /* Text */
+        .coming-soon {
+            text-align: left;
+            margin-right: auto;
+             font-weight: bold;
+        }
+
+        .coming-soon h1 {
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: -0.02em;
+            margin-bottom: 0rem;
+            margin-left: -0.05em;
+        }
+
+        .coming-soon .subtitle {
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: .125em;
+        }
+
+        .coming-soon .contact {
+            font-size: 0.65rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin-bottom: .125em;    
+        }
+
+        .coming-soon a {
+            color: black;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .coming-soon a:hover {
+            opacity: 0.6;
+        }
+
+        /* Booking */
+        .booking {
+            margin-top: 0;
+            font-size: 0.65rem;
+            font-weight: bold;
+            color: black; 
+            letter-spacing: 0.02em;
+             text-transform: uppercase;
+            margin-bottom:  0em; 
+        }
+
+        .booking a {
+            font-size: 0.65rem;
+            color: black; 
+            letter-spacing: 0.02em;
+             text-transform: uppercase;
+            margin-bottom:  0em;    
+        }
+
+        .booking a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer note */
+        .footer-note {
+            position: fixed;
+            top: 1.5rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+       /* @media (max-width: 768px) {
+            .coming-soon h1 {
+                font-size: 2rem;
+            }
+
+            .slideshow {
+                max-width: 100%;
+            }
+
+            .container {
+                gap: 2rem;
+            }*/
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="slideshow" id="slideshow">
+            <!-- Images will be loaded here -->
+        </div>
+
+        <div class="coming-soon">
+            <h1>COMING SOON</h1>
+            <div class="subtitle">Instagram: <a href="https://instagram.com/christian_neitzel" target="_blank">@christian_neitzel</a></div>
+            <div class="contact">Contact: <a href="mailto:studio@christianneitzel.com">studio@christianneitzel.com</a></div>
+        </div>
+
+        
+
+<div class="booking">
+            <a href="https://calendly.com/your-booking-link" target="_blank">Book a Session</a>
+        </div> 
+
+    </div>
+
+<script>
+    // Image data - same as your main portfolio
+    const images = [
+        'ChristianNeitzel_NORA_SmokeSmoke-1.png',
+        'ChristianNeitzel__Anna_Corridor-1.jpg',
+        'ChristianNeitzel__Anna_Corridor-4.jpg',
+        'ChristianNeitzel__Anna_Corridor-3.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-38.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-27.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-25.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-24.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-23.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-22.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-17.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-12.jpg',
+        'ChristianNeitzel_Tanja_Sep25_revised02-6.jpg',
+        'ChristianNeitzel_NoraH_revised-7.jpg',
+        'ANNA_WU-37.jpg',
+        'ANNA_WU-1.jpg',
+        'Erroe_25-28.jpg',
+        'Erroe_25-16.jpg'
+    ];
+
+    const slideshow = document.getElementById('slideshow');
+    let currentSlide = 0;
+
+    // Load all images
+    images.forEach((imageName, index) => {
+        const img = document.createElement('img');
+        img.src = `images/${imageName}`;
+        img.alt = 'Photography by Christian Neitzel';
+        if (index === 0) img.classList.add('active');
+        slideshow.appendChild(img);
+    });
+
+    // Auto-advance slideshow every 1.5 seconds
+    function nextSlide() {
+        const allImages = slideshow.querySelectorAll('img');
+        allImages[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % images.length;
+        
+        allImages[currentSlide].classList.add('active');
+    }
+
+    let autoPlayInterval = setInterval(nextSlide, 1500);
+
+    // Click to advance
+    slideshow.addEventListener('click', () => {
+        clearInterval(autoPlayInterval);
+        nextSlide();
+        autoPlayInterval = setInterval(nextSlide, 1500);
+    });
+
+    // Keyboard arrow navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            clearInterval(autoPlayInterval);
+            nextSlide();
+            autoPlayInterval = setInterval(nextSlide, 1500);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            clearInterval(autoPlayInterval);
+            prevSlide();
+            autoPlayInterval = setInterval(nextSlide, 1500);
+        }
+    });
+
+    function prevSlide() {
+        const allImages = slideshow.querySelectorAll('img');
+        allImages[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide - 1 + images.length) % images.length;
+        
+        allImages[currentSlide].classList.add('active');
+    }
+</script>
+</body>
+</html>

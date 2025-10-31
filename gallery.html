@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Neitzel Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            background: #141414;
+            color: white;
+            overflow: hidden;
+            letter-spacing: -0.02em;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, #141414 0%, rgba(20,20,20,0) 100%);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        /* Gallery Container */
+        .gallery-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: visible;
+            padding-top: 8rem;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: flex;
+            gap: 2rem;
+            height: calc(100vh - 12rem);
+            align-items: flex-end;
+            padding-right: 3rem;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
+        }
+
+        .gallery-item {
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            width: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        /* Varying heights for rhythm */
+        .gallery-item:nth-child(1) { height: 85%; }
+        .gallery-item:nth-child(2) { height: 70%; }
+        .gallery-item:nth-child(3) { height: 95%; }
+        .gallery-item:nth-child(4) { height: 75%; }
+        .gallery-item:nth-child(5) { height: 80%; }
+        .gallery-item:nth-child(6) { height: 90%; }
+        .gallery-item:nth-child(7) { height: 78%; }
+        .gallery-item:nth-child(8) { height: 88%; }
+        .gallery-item:nth-child(9) { height: 72%; }
+        .gallery-item:nth-child(10) { height: 92%; }
+        .gallery-item:nth-child(11) { height: 85%; }
+        .gallery-item:nth-child(12) { height: 80%; }
+        .gallery-item:nth-child(13) { height: 88%; }
+        .gallery-item:nth-child(14) { height: 75%; }
+        .gallery-item:nth-child(15) { height: 82%; }
+        .gallery-item:nth-child(16) { height: 90%; }
+        .gallery-item:nth-child(17) { height: 78%; }
+        .gallery-item:nth-child(18) { height: 65%; }
+
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #141414;
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 2rem;
+            right: 3rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-weight: 300;
+            line-height: 1;
+            z-index: 201;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            font-weight: 300;
+            padding: 2rem;
+            z-index: 201;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            opacity: 1;
+        }
+
+        .lightbox-prev {
+            left: 1rem;
+        }
+
+        .lightbox-next {
+            right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem;
+            }
+
+            .gallery-container {
+                padding-left: 1.5rem;
+                padding-top: 6rem;
+            }
+
+            .gallery {
+                padding-right: 1.5rem;
+            }
+
+            .lightbox-close {
+                right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CHRISTIAN NEITZEL</div>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery" id="gallery">
+            <!-- Images will be loaded here -->
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        // Image data with your actual filenames
+        const images = [
+            'ChristianNeitzel_NORA_SmokeSmoke-1.png',
+            'ChristianNeitzel__Anna_Corridor-1.jpg',
+            'ChristianNeitzel__Anna_Corridor-4.jpg',
+            'ChristianNeitzel__Anna_Corridor-3.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-38.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-27.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-25.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-24.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-23.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-22.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-17.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-12.jpg',
+            'ChristianNeitzel_Tanja_Sep25_revised02-6.jpg',
+            'ChristianNeitzel_NoraH_revised-7.jpg',
+            'ANNA_WU-37.jpg',
+            'ANNA_WU-1.jpg',
+            'Erroe_25-28.jpg',
+            'Erroe_25-16.jpg'
+        ];
+
+        const gallery = document.getElementById('gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        let currentIndex = 0;
+
+        // Load images
+        images.forEach((imageName, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.dataset.index = index;
+            
+            const img = document.createElement('img');
+            img.src = `images/${imageName}`;
+            img.alt = 'Photography by Christian Neitzel';
+            
+            item.appendChild(img);
+            gallery.appendChild(item);
+
+            // Click to open lightbox
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        // Lightbox functions
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightboxImage() {
+            lightboxImg.src = `images/${images[currentIndex]}`;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightboxImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightboxImage();
+        }
+
+        // Lightbox controls
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', nextImage);
+        lightboxPrev.addEventListener('click', prevImage);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Vertical scroll = horizontal gallery movement
+        let scrollPosition = 0;
+        let maxScroll = 0;
+
+        function updateMaxScroll() {
+            maxScroll = gallery.scrollWidth - window.innerWidth + 200;
+        }
+
+        // Calculate max scroll after images load
+        window.addEventListener('load', updateMaxScroll);
+        window.addEventListener('resize', updateMaxScroll);
+
+        // Initial calculation
+        setTimeout(updateMaxScroll, 100);
+
+        window.addEventListener('wheel', (e) => {
+            if (lightbox.classList.contains('active')) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Update scroll position (both deltaY and deltaX for all input methods)
+            const delta = e.deltaY !== 0 ? e.deltaY : e.deltaX;
+            scrollPosition += delta;
+            scrollPosition = Math.max(0, Math.min(scrollPosition, maxScroll));
+            
+            // Move gallery
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }, { passive: false });
+
+        // Also handle touch/trackpad gestures
+        let touchStartX = 0;
+        let touchStartScrollPos = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            if (lightbox.classList.contains('active')) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartScrollPos = scrollPosition;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (lightbox.classList.contains('active')) return;
+            e.preventDefault();
+            
+            const touchX = e.touches[0].clientX;
+            const diff = touchStartX - touchX;
+            scrollPosition = touchStartScrollPos + diff;
+            scrollPosition = Math.max(0, Math.min(scrollPosition, maxScroll));
+            
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }, { passive: false });
+    </script>
+</body>
+</html>
