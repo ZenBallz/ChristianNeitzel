@@ -190,4 +190,53 @@
             else prevImage();
         }
     }, { passive: true });
+
+/* ---------- Touch swipe in lightbox ---------- */
+    // ... your existing touch code ...
+
+window.addEventListener('load', () => {
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.frame').forEach((frameEl) => {
+            const imageWrap = frameEl.querySelector('.frame__image');
+            const img = frameEl.querySelector('img');
+            if (!imageWrap || !img) return;
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: frameEl,
+                    start: 'top 80%',
+                    end: 'top 20%',
+                    scrub: .75,
+                    markers: false,
+                    invalidateOnRefresh: true,
+                },
+            })
+            .fromTo(imageWrap,
+                { clipPath: 'inset(0% 0% 100% 0%)' },
+                { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', immediateRender: false }
+            )
+            .from(img,
+                { scale: 1, ease: 'none', immediateRender: false },
+                0
+            );
+        });
+
+        ScrollTrigger.refresh();
+
+        // Debug — log AFTER triggers are created
+        console.log('GSAP:', typeof gsap);
+        console.log('ScrollTrigger:', typeof ScrollTrigger);
+        console.log('Triggers:', ScrollTrigger.getAll().length);
+        ScrollTrigger.getAll().forEach((st, i) => {
+            console.log(`Trigger ${i}:`, {
+                start: st.start,
+                end: st.end,
+                progress: st.progress,
+                triggerHeight: st.trigger?.getBoundingClientRect().height,
+            });
+        });
+    }
+});
 })();

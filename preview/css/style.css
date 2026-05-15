@@ -6,7 +6,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+      /* scroll-behavior: smooth; */
 }
 
 body {
@@ -15,7 +15,7 @@ body {
     color: #000000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+  
 }
 
 img {
@@ -57,64 +57,66 @@ h1 {
     font-weight: 700;
 }
 
-body { padding-top: 1.6rem; } /* offset for staging banner */
+body { padding-top:0} /* offset for staging banner */
 
 /* ---------- Hero ---------- */
 .hero {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 1.6rem);
-    min-height: 600px;
-    overflow: hidden;
+  display: grid;
+  grid-template-columns: 3fr 13fr 1fr 1fr 13fr 3fr;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  align-items: center; /* vertically center both columns */
 }
 
 .hero__wordmark {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 53%;          /* left zone, mirrors Figma 915/1728 */
-    padding-left: 6vw;   /* breathing room */
-    will-change: opacity, transform;
+  grid-column: 2;
+  will-change: opacity, transform;
 }
 
 .hero__wordmark h1 {
-    font-size: clamp(1.4rem, 2.2vw, 2.4rem);
-    margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
 }
 
 .hero__wordmark .tagline {
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 700;
+  font-size: 0.6875rem;
+  line-height: 1.47rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .hero__image {
-    position: absolute;
-    top: 6.36vh;
-    right: 8.85vw;
-    width: 38.2vw;
-    height: 88.5vh;
-    max-height: calc(100vh - 1.6rem - 4rem);
-    overflow: hidden;
+  grid-column: 5;
+  position: relative;
+  width: 100%;
+  max-width: 60vh;
+  max-height: 80vh;
+  overflow: hidden;
+  aspect-ratio: 3/4;
 }
 
 .hero__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
-
 /* ---------- Sticky site header (post-scroll, top-left wordmark) ---------- */
 .site-header {
     position: fixed;
-    top: 1.6rem;
-    left: 0;
+    top: 1.5rem;
+    left: 1.5rem;
     right: 0;
     z-index: 50;
-    padding: 1.5rem 2rem;
+    padding: 0;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -126,20 +128,21 @@ body { padding-top: 1.6rem; } /* offset for staging banner */
 }
 
 .site-header__wordmark {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
 }
 
 /* ---------- Bottom nav (post-scroll, sections) ---------- */
 .site-nav {
     position: fixed;
-    bottom: 1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 1rem;
+    right: 1.5rem;
     z-index: 50;
     display: flex;
-    gap: 2.5rem;
+    gap: 2em;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -151,88 +154,87 @@ body { padding-top: 1.6rem; } /* offset for staging banner */
 }
 
 .site-nav a {
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size:1rem;
+    letter-spacing: -0.02em;
     font-weight: 700;
     padding: 0.5rem 0.25rem;  /* tap target */
 }
 
-/* ---------- Frames (shoot covers, art-directed positions) ---------- */
+/* ---------- Frames as full-viewport articles ---------- */
 main {
-    padding: 8vh 0 12vh;
+  padding: 10vh 0 20vh;
 }
 
-.frame {
-    width: 100%;
-    margin: 6vh 0;
-    cursor: pointer;
-}
-
-.frame__image {
-    overflow: hidden;
-    position: relative;
-}
-
+/* Remove the transition from the base image — only hover */
 .frame__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  display: block;
+  width: auto;
+  height: 80vh;
 }
 
 .frame:hover .frame__image img {
-    transform: scale(1.015);
+  transform: scale(1.015);
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* Side variants */
-.frame--right .frame__image {
-    margin-left: auto;
-    margin-right: 8.85vw;
+/* Frame layout */
+.frame {
+  min-height: 110vh;
+  display: grid;
+  grid-template-columns: 3fr 15fr 1fr 1fr 15fr 3fr;
+  align-items: center;
+  cursor: pointer;
+
 }
 
-.frame--left .frame__image {
-    margin-left: 8.85vw;
-    margin-right: auto;
+/* Orientation caps */
+.frame--vertical .frame__image   { max-height: 80vh; }
+.frame--horizontal .frame__image { max-height: 80vh; }
+
+.frame--vertical .frame__image img,
+.frame--horizontal .frame__image img {
+  max-height: inherit;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.frame--center .frame__image {
-    margin-left: auto;
-    margin-right: auto;
-}
+/* Position */
+.frame--left   .frame__image { grid-column: 2 / 6; }
+.frame--right  .frame__image { grid-column: 2 / 6; }
+.frame--center .frame__image { grid-column: 2 / 6; }
 
-/* Size variants */
-.frame--large .frame__image {
-    width: 38.2vw;
-    aspect-ratio: 2 / 3;
-}
-
-.frame--medium .frame__image {
-    width: 30vw;
-    aspect-ratio: 2 / 3;
-}
-
-.frame--small .frame__image {
-    width: 22vw;
-    aspect-ratio: 2 / 3;
-}
+/* Size within column 
+.frame--large  .frame__image { width: 100%; }
+.frame--medium .frame__image { width: 100%; }
+.frame--small  .frame__image { width: 100%; }*/
 
 /* ---------- Footer ---------- */
 .site-footer {
-    padding: 8vh 6vw 4vh;
-    margin-top: 4vh;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .site-footer__inner {
-    max-width: 600px;
+    display: flex;
+    width: 100%;
+    max-width: none;
+  align-items: left;
 }
+.site-footer__inner p:first-child { margin-left:auto; margin-right: 2em; }
+.site-footer__inner p:nth-child(2) { margin-right: 2em; }
+.site-footer__inner p:last-child  { margin-right: auto; }
+
 
 .site-footer__line {
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: .125em;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0;
 }
 
 /* ---------- Lightbox ---------- */
@@ -240,7 +242,7 @@ main {
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: #0a0a0a;
+    background: #fff;
     display: none;
     align-items: center;
     justify-content: center;
@@ -272,15 +274,16 @@ main {
 .lightbox__close {
     position: fixed;
     top: 1.5rem;
-    right: 2rem;
+    right: 1.5rem;
     background: none;
     border: none;
-    color: #fff;
-    font-size: 2rem;
+    color: #000000;
+    font-size: 1rem;
     line-height: 1;
     cursor: pointer;
     z-index: 201;
     padding: 0.5rem;
+    font-weight: 700;
 }
 
 .lightbox__nav {
@@ -289,17 +292,20 @@ main {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #fff;
-    font-size: 2.5rem;
+    color: #000;
+    font-size: 1rem;
     line-height: 1;
     cursor: pointer;
     padding: 1.5rem;
     z-index: 201;
-    opacity: 0.65;
+    opacity: 1;
+    font-weight: 700;
     transition: opacity 0.2s ease;
 }
 
 .lightbox__nav:hover {
+    background-color: #000;
+    color:#fff;
     opacity: 1;
 }
 
@@ -311,9 +317,10 @@ main {
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-    color: #fff;
-    font-size: 0.625rem;
-    letter-spacing: 0.1em;
+    color: #000000;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     font-weight: 700;
     opacity: 0.7;
@@ -385,10 +392,10 @@ main {
     }
 
     .site-footer {
-        padding: 6vh 24px 4vh;
+        padding: 0;
     }
 
-    .lightbox__nav { padding: 1rem; font-size: 2rem; }
+    .lightbox__nav { padding: 1rem; font-size: 1rem; }
     .lightbox__close { right: 1rem; top: 1rem; }
 }
 
