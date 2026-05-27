@@ -31,7 +31,7 @@ a {
 }
 
 a:hover {
-    opacity: 0.55;
+    opacity: 0.8;
 }
 
 h1 {
@@ -41,21 +41,6 @@ h1 {
 }
 
 /* ---------- Staging banner (preview-only, remove on promotion) ---------- */
-.staging-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: #051A24;
-    color: #fff;
-    text-align: center;
-    font-size: 0.625rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.4rem;
-    font-weight: 700;
-}
 
 body { padding-top:0} /* offset for staging banner */
 
@@ -85,7 +70,7 @@ body { padding-top:0} /* offset for staging banner */
 }
 
 .hero__wordmark .tagline {
-  font-size: 0.6875rem;
+  font-size: 0.685rem;
   line-height: 1.47rem;
   text-align: center;
   letter-spacing: -0.02em;
@@ -117,34 +102,33 @@ body { padding-top:0} /* offset for staging banner */
     right: 0;
     z-index: 50;
     padding: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 0.2s ease;
 }
-
-.site-header.is-visible {
+.site-header:hover a {opacity: 1;}
+/*.site-header.is-visible {
     opacity: 1;
     pointer-events: auto;
-}
+}*/
 
 .site-header__wordmark {
 text-align: left;
   font-size: 1rem;
   font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.05;
+    line-height: 1.0;
 }
 
 /* ---------- Bottom nav (post-scroll, sections) ---------- */
 .site-nav {
     position: fixed;
-    top: 1rem;
-    right: 1.5rem;
+    top: .9rem;
+    right: 1.25rem;
     z-index: 50;
     display: flex;
     gap: 2em;
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
@@ -154,9 +138,11 @@ text-align: left;
 }
 
 .site-nav a {
-    font-size:1rem;
+    font-size: 1rem;
     letter-spacing: -0.02em;
     font-weight: 700;
+      cursor: pointer;
+  text-transform: uppercase;
     padding: 0.5rem 0.25rem;  /* tap target */
 }
 
@@ -173,17 +159,18 @@ main {
 }
 
 .frame:hover .frame__image img {
-  transform: scale(1.015);
+  transform: scale(1);
   transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    cursor: none;
 }
 
 /* Frame layout */
 .frame {
-  min-height: 110vh;
+  min-height: 120vh;
   display: grid;
   grid-template-columns: 3fr 15fr 1fr 1fr 15fr 3fr;
   align-items: center;
-  cursor: pointer;
+  cursor: auto;
 
 }
 
@@ -213,28 +200,27 @@ main {
 .site-footer {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .site-footer__inner {
     display: flex;
     width: 100%;
     max-width: none;
-  align-items: left;
+  align-items: center;
+  position: relative;
 }
-.site-footer__inner p:first-child { margin-left:auto; margin-right: 2em; }
-.site-footer__inner p:nth-child(2) { margin-right: 2em; }
-.site-footer__inner p:last-child  { margin-right: auto; }
+.site-footer__inner p:first-child { margin-left:0; margin-right: auto; }
+.site-footer__inner div:nth-child(2) { margin-left:auto;}
+.site-footer__inner div:last-child  { margin-left: 2em; margin-right: 0; }
 
 
 .site-footer__line {
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
+    font-size: 0.685rem;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
-    margin-bottom: .125em;
-    text-transform: uppercase;
+    margin-bottom: 0em;
     font-weight: 700;
-    margin-bottom: 0;
 }
 
 /* ---------- Lightbox ---------- */
@@ -248,6 +234,7 @@ main {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.15s ease;
+    cursor: pointer;
 }
 
 .lightbox.is-active {
@@ -257,7 +244,7 @@ main {
 
 .lightbox__content {
     max-width: 90vw;
-    max-height: 88vh;
+    max-height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -265,7 +252,7 @@ main {
 
 .lightbox__content img {
     max-width: 100%;
-    max-height: 88vh;
+    max-height: 85vh;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -273,130 +260,125 @@ main {
 
 .lightbox__close {
     position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 1.3rem;
+    right: 1rem;
     background: none;
     border: none;
     color: #000000;
-    font-size: 1rem;
+    font-size: 0.685rem;
     line-height: 1;
     cursor: pointer;
     z-index: 201;
     padding: 0.5rem;
     font-weight: 700;
+    letter-spacing: 0.0em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
 }
 
-.lightbox__nav {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #000;
-    font-size: 1rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 1.5rem;
-    z-index: 201;
-    opacity: 1;
-    font-weight: 700;
-    transition: opacity 0.2s ease;
+.lightbox__close:hover {
+    color: #999;
 }
 
-.lightbox__nav:hover {
-    background-color: #000;
-    color:#fff;
-    opacity: 1;
-}
-
-.lightbox__nav--prev { left: 0.5rem; }
-.lightbox__nav--next { right: 0.5rem; }
-
-.lightbox__counter {
+.lightbox__meta {
     position: fixed;
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-    color: #000000;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.02em;
+    color: #000;
+    font-size: 0.685rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     font-weight: 700;
-    opacity: 0.7;
     z-index: 201;
+    white-space: nowrap;
+    pointer-events: none;
 }
 
-/* ---------- Mobile ---------- */
+.lightbox__meta-sep {
+    margin: 0 1.5rem;
+    opacity: 1;
+     font-weight: 700;
+}
+
+
+    /* Mobile Version */
 @media (max-width: 768px) {
+    /* Collapse hero grid to single column */
+
+.site-header {left: 1rem;
+ pointer-events: none;
+    opacity: 0;}
+.site-header__wordmark {
+text-align: left;
+}
+
+.site-header.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
     .hero {
+        display: flex;
+        flex-direction: column;
         height: auto;
         min-height: 0;
-        padding: 8vh 24px 4vh;
+        padding: 8vh 16px 24vh;
+        gap: 4vh;
     }
-
-    .hero__wordmark {
-        position: static;
-        transform: none;
-        width: 100%;
-        padding: 0;
-        margin-bottom: 4vh;
-    }
-
-    .hero__wordmark h1 {
-        font-size: clamp(1.2rem, 5.5vw, 1.7rem);
-    }
-
+    
+    .hero__wordmark { width: 100%; }
+    
     .hero__image {
-        position: static;
+        width: 100%;
+        max-width: none;
+        max-height: none;
+        aspect-ratio: 3/4;
+    }
+    
+    main {
+  padding: 0vh 0 8vh;
+}
+    /* Collapse frame grid to single column */
+    .frame {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 0 16px 24vh;
+        margin: 0;
+    }
+    
+    .frame--left .frame__image,
+    .frame--right .frame__image,
+    .frame--center .frame__image {
+        grid-column: auto;
+        width: 100%;
+        margin: 0;
+    }
+    
+  
+    /* Cap image height to viewport so it fits the phone screen */
+    .frame__image img {
         width: 100%;
         height: auto;
         max-height: none;
-        aspect-ratio: 2 / 3;
+        object-fit: contain;
     }
 
-    main {
-        padding: 4vh 0 8vh;
-    }
 
-    .frame {
-        margin: 4vh 0;
-    }
+    .lightbox__close { right: .5rem; top: 1rem; }
 
-    .frame--right .frame__image,
-    .frame--left .frame__image,
-    .frame--center .frame__image {
-        margin-left: 24px;
-        margin-right: 24px;
-        width: calc(100% - 48px);
-    }
-
-    .frame--large .frame__image,
-    .frame--medium .frame__image,
-    .frame--small .frame__image {
-        width: calc(100% - 48px);
-    }
-
-    .site-header {
-        padding: 1rem 24px;
-    }
-
-    .site-nav {
-        gap: 1.5rem;
-        bottom: 1.25rem;
-    }
-
-    .site-nav a {
-        font-size: 0.625rem;
-        letter-spacing: 0.08em;
-    }
-
-    .site-footer {
-        padding: 0;
-    }
-
-    .lightbox__nav { padding: 1rem; font-size: 1rem; }
-    .lightbox__close { right: 1rem; top: 1rem; }
+.site-footer {padding: 1rem;}
+.site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+  align-items: center;}
+.site-footer__inner p:first-child { margin-left: auto; margin-right: auto;padding-bottom: 1em; }
+.site-footer__inner div:nth-child(2) {margin-left:auto; margin-right: auto;padding-bottom: .25rem;
+    color: #999; }
+.site-footer__inner div:last-child  { margin-left: auto; margin-right: auto;    color: #999;  }
 }
 
 /* ---------- Reduced motion: hard swap, no fades ---------- */
@@ -411,4 +393,394 @@ main {
     }
 
     .hero__wordmark { transition: none !important; }
+}
+/* ---------- Mobile menu trigger (dots) ---------- */
+.menu-trigger {
+    display: none; /* hidden by default, shown on mobile */
+    position: fixed;
+    top: .64rem;
+    right: -4px;
+    width: 44px;
+    height: 44px;
+    padding-left: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-trigger.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu-trigger__dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #000;
+}
+
+/* ---------- Mobile menu overlay ---------- */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: #fff;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.menu-overlay.is-open {
+    display: flex;
+    opacity: 1;
+}
+
+.menu-overlay__close {
+    position: fixed;
+    top: 1rem;
+    right: .5rem;
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 0.685rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.menu-overlay__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu-overlay__links a {
+    font-size: 1rem;
+    font-weight: 700;
+      text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.menu-overlay__contact {
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #999;
+}
+
+/* Show menu trigger on mobile, hide desktop nav */
+@media (max-width: 768px) {
+    .menu-trigger { display: flex; }
+    .site-nav { display: none; }
+
+.lightbox__content {
+max-width: 100%;
+padding: 1rem; }
+}
+
+/* ---------- Hero slideshow ---------- */
+.hero__image {
+    position: relative;
+}
+
+.hero__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero__image img.is-active {
+    opacity: 1;
+}
+
+/* On mobile the image is static (aspect-ratio handles sizing) — stack absolutely positioned images on top of each other */
+@media (max-width: 768px) {
+    .hero__image {
+        aspect-ratio: 3/4;
+    }
+}
+
+/* ---------- Intro choreography ---------- */
+/* Elements start invisible; JS or the fallback below reveals them */
+.hero__wordmark,
+.hero__image,
+.site-header,
+.site-nav,
+.menu-trigger {
+    opacity: 0;
+}
+
+/* If JS is disabled or fails, show everything after a short delay */
+.no-js .hero__wordmark,
+.no-js .hero__image,
+.no-js .site-header,
+.no-js .site-nav,
+.no-js .menu-trigger {
+    opacity: 1;
+}
+
+.disco-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+    will-change: transform, opacity;
+    mix-blend-mode: difference;
+}
+
+.disco-cursor.is-active {
+    opacity: 1;
+}
+
+.frame__image img,
+.site-nav a,
+.site-header__wordmark,
+.info-section a,
+.site-footer a,
+.menu-trigger,
+.lightbox__close {
+    cursor: none;
+}
+
+@media (hover: none) {
+    .disco-cursor { display: none; }
+    .frame__image img,
+    .site-nav a,
+    .site-header__wordmark,
+    .info-section a,
+    .site-footer a,
+    .menu-trigger,
+    .lightbox__close {
+        cursor: pointer;
+    }
+}
+/* ---------- Hover dim overlay ---------- */
+body {
+    background: #fff;
+    transition: background-color 0.4s ease;
+}
+
+body:has(.frame__image img:hover) {
+    background: #eeeeee;  /* faint gray */
+}
+
+/* ---------- Frame pair (two images side by side, no gap) ---------- */
+.frame--pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 0; 
+    align-items: center;
+    padding: 0rem;
+}
+
+.frame--pair .frame__image {
+    grid-column: auto;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.frame--pair .frame__image:first-child {
+    justify-content: flex-end;
+}
+
+.frame--pair .frame__image:last-child {
+    justify-content: flex-start;
+}
+
+.frame--pair .frame__image img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+@media (max-width: 768px) {
+    .frame--pair {
+        display: flex;
+        flex-direction: row;
+        padding: 0 16px 24vh;
+        gap: 0;
+    }
+    
+    .frame--pair .frame__image {
+        max-height: none;
+    }
+    
+    .frame--pair .frame__image img {
+        max-height: none;
+        object-fit: contain;
+    }
+}
+
+
+//* ---------- Info page ---------- */
+
+html, body {
+    min-height: 100%;
+}
+.info-hero {
+    height: calc(100% - 0rem);
+    display: grid;
+    place-items: center;
+    padding: 0;
+}
+
+.info-hero__grid {
+    /* existing rules — they should work as-is */
+    display: grid;
+    grid-template-columns: 3fr 7fr 1fr 10fr 1fr 10fr 3fr;
+    grid-template-rows: auto 1fr;
+    width: 100%;              /* ADD THIS — make sure grid fills parent width */
+    row-gap: 3rem;
+}
+
+/* Tagline spans full width on row 1 */
+.info-hero__tagline {
+    grid-column: 4 / -1;
+    grid-row: 1;
+}
+
+.info-tagline {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1.0;
+}
+
+/* Image: row 2, column 1 — its natural height drives the row */
+.info-hero__image {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+
+.info-hero__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Main content (about + services): row 2, column 3 */
+.info-hero__main {
+    grid-column: 4;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Aside (contact): row 2, column  */
+.info-hero__aside {
+    grid-column: 6;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.info-section h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.info-section ul,
+.info-section li {
+   font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.info-section p {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0rem;
+     line-height: 1;
+}
+
+.info-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-section li {
+    margin-bottom: 0.25rem;
+}
+
+.info-section a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Mobile: stack everything */
+@media (max-width: 768px) {
+    .info-hero {
+      height:  auto;
+        padding: 8vh 16px 8vh;
+    }
+
+    .info-hero__grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 3vh;
+    }
+
+    .info-hero__image {
+        width: 100%;
+        aspect-ratio: 3/4;
+    }
+
+    .info-hero__main,
+    .info-hero__aside {
+        gap: 2rem;
+    }
 }
