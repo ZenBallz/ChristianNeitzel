@@ -431,7 +431,7 @@
     text-transform: uppercase;
     line-height: 1;
     color: #000;
-    transform: translateY(6.2px);   /* same trick — tweak to taste */
+    transform: translateY(6.3px);   /* same trick — tweak to taste */
 }
 
 @media (max-width: 768px) {
@@ -825,7 +825,7 @@
         display: block;
         font-size: 8px;
         font-weight: 700;
-        line-height: 1;
+        line-height: 8px;
         letter-spacing: -0.02em;
         color: #ffffff;
         transform: translateY(0px);   /* nudge to optical center */
