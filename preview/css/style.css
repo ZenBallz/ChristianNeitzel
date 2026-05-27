@@ -431,7 +431,7 @@
     text-transform: uppercase;
     line-height: 1;
     color: #000;
-    transform: translateY(5.5px);   /* same trick — tweak to taste */
+    transform: translateY(6.2px);   /* same trick — tweak to taste */
 }
 
 @media (max-width: 768px) {
@@ -828,6 +828,6 @@
         line-height: 1;
         letter-spacing: -0.02em;
         color: #ffffff;
-        transform: translateY(0.5px);   /* nudge to optical center */
+        transform: translateY(0px);   /* nudge to optical center */
     }
 }
