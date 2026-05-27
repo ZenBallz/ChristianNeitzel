@@ -380,6 +380,7 @@ text-align: left;
     color: #999; }
 .site-footer__inner div:last-child  { margin-left: auto; margin-right: auto;    color: #999;  }
 }
+.hide-on-mobile {display: none;}
 
 /* ---------- Reduced motion: hard swap, no fades ---------- */
 @media (prefers-reduced-motion: reduce) {
