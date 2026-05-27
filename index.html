@@ -3,246 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian Neitzel Photography - Coming Soon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="robots" content="noindex, nofollow">
+    <title>Christian Neitzel — Editorial Portrait Photography, Vienna</title>
+<meta name="description" content="Editorial portrait and fashion photography by Christian Neitzel. Vienna — Worldwide.">
+<link rel="canonical" href="https://christianneitzel.com/">
+ 
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christianneitzel.com/">
+<meta property="og:title" content="Christian Neitzel — Editorial Portrait Photography, Vienna">
+<meta property="og:description" content="Editorial portrait and fashion photography by Christian Neitzel. Vienna — Worldwide.">
+<meta property="og:image" content="https://christianneitzel.com/images/og/twitter_og_tanja-hiro-1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta property="og:image:alt" content="Two editorial portraits by Christian Neitzel — Tanja and Hiro.">
+<meta property="og:site_name" content="Christian Neitzel Photography">
+<meta property="og:locale" content="en_US">
+ 
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Christian Neitzel — Editorial Portrait Photography, Vienna">
+<meta name="twitter:description" content="Editorial portrait and fashion photography by Christian Neitzel. Vienna — Worldwide.">
+<meta name="twitter:image" content="https://christianneitzel.com/images/og/twitter_og_tanja-hiro-1.jpg">
+<meta name="twitter:image:alt" content="Two editorial portraits by Christian Neitzel — Tanja and Hiro.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://christianneitzel.com/#person",
+      "name": "Christian Neitzel",
+      "url": "https://christianneitzel.com/",
+      "image": "https://christianneitzel.com/images/info/christianneitzel_chris-info.jpg",
+      "jobTitle": "Editorial Portrait & Fashion Photographer",
+      "description": "Vienna-based editorial portrait and fashion photographer. Available worldwide.",
+      "email": "studio@christianneitzel.com",
+      "telephone": "+436506310002",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vienna",
+        "addressCountry": "AT"
+      },
+      "sameAs": [
+        "https://instagram.com/christian_neitzel"
+      ],
+      "knowsAbout": [
+        "Editorial portrait photography",
+        "Fashion photography",
+        "Portrait commissions",
+        "Documentary photography",
+        "Photo retouching"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://christianneitzel.com/#business",
+      "name": "Christian Neitzel Photography",
+      "url": "https://christianneitzel.com/",
+      "image": "https://christianneitzel.com/images/og/twitter_og_tanja-hiro-1.jpg",
+      "description": "Editorial portrait and fashion photography by Christian Neitzel. Vienna — Worldwide.",
+      "founder": { "@id": "https://christianneitzel.com/#person" },
+      "email": "studio@christianneitzel.com",
+      "telephone": "+436506310002",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vienna",
+        "addressCountry": "AT"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Vienna" },
+        { "@type": "Place", "name": "Worldwide" }
+      ],
+      "priceRange": "€€€",
+      "serviceType": [
+        "Editorial portrait photography",
+        "Fashion photography",
+        "Portrait commissions",
+        "Editorial and documentary features",
+        "Photo retouching"
+      ],
+      "sameAs": [
+        "https://instagram.com/christian_neitzel"
+      ]
+    }
+  ]
+}
+</script>
+    <link rel="stylesheet" href="https://use.typekit.net/wkk3byr.css">
+    <link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="images/Favicon_Discoball.png">
 
-        body {
-            font-family: 'neue-haas-unica', Helvetica, Arial, sans-serif;
-            background: white;
-            color: black;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0%;
-        }
-
-        .container {
-            max-width: 600px;
-            width: 85%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        /* Slideshow */
-        .slideshow {
-            width: 100%;
-            max-width: 600px;
-            aspect-ratio: 3/4;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slideshow img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity .2s ease-in-out;
-        }
-
-        .slideshow img.active {
-            opacity: 1;
-        }
-
-        /* Text */
-        .coming-soon {
-            text-align: left;
-            margin-right: auto;
-             font-weight: bold;
-        }
-
-        .coming-soon h1 {
-            font-size: 1.6rem;
-            font-weight: bold;
-            letter-spacing: -0.02em;
-            margin-bottom: 0rem;
-            margin-left: -0.05em;
-        }
-
-        .coming-soon .subtitle {
-            font-size: 0.65rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: .125em;
-        }
-
-        .coming-soon .contact {
-            font-size: 0.65rem;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            margin-bottom: .125em;    
-        }
-
-        .coming-soon a {
-            color: black;
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-
-        .coming-soon a:hover {
-            opacity: 0.6;
-        }
-
-        /* Booking */
-        .booking {
-            margin-top: 0;
-            font-size: 0.65rem;
-            font-weight: bold;
-            color: black; 
-            letter-spacing: 0.02em;
-             text-transform: uppercase;
-            margin-bottom:  0em; 
-        }
-
-        .booking a {
-            font-size: 0.65rem;
-            color: black; 
-            letter-spacing: 0.02em;
-             text-transform: uppercase;
-            margin-bottom:  0em;    
-        }
-
-        .booking a:hover {
-            opacity: 0.8;
-        }
-
-        /* Footer note */
-        .footer-note {
-            position: fixed;
-            top: 1.5rem;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            opacity: 0.6;
-        }
-
-       /* @media (max-width: 768px) {
-            .coming-soon h1 {
-                font-size: 2rem;
-            }
-
-            .slideshow {
-                max-width: 100%;
-            }
-
-            .container {
-                gap: 2rem;
-            }*/
-    </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="slideshow" id="slideshow">
-            <!-- Images will be loaded here -->
-        </div>
+   
+  <header class="site-header" id="siteHeader" aria-hidden="true">
+        <a href="index.html" class="site-header__wordmark">CHRISTIAN NEITZEL PHOTOGRAPHY</a>
+    </header>
 
-        <div class="coming-soon">
-            <h1>COMING SOON</h1>
-            <div class="subtitle">Instagram: <a href="https://instagram.com/christian_neitzel" target="_blank">@christian_neitzel</a></div>
-            <div class="contact">Contact: <a href="mailto:studio@christianneitzel.com">studio@christianneitzel.com</a></div>
-        </div>
+    <nav class="site-nav" id="siteNav" aria-hidden="true">
+        <a href="index.html">Work</a>
+        <a href="info.html">Info</a>
+    </nav>
+<button class="menu-trigger" id="menuTrigger" aria-label="Open menu" aria-expanded="false"><span class="menu-trigger__label">MENU</span></button>
 
-        
-
-<div class="booking">
-            <a href="https://calendly.com/your-booking-link" target="_blank">Book a Session</a>
-        </div> 
-
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <button class="menu-overlay__close" id="menuOverlayClose" aria-label="Close menu">close</button>
+    <nav class="menu-overlay__links">
+        <a href="index.html">work</a>
+        <a href="info.html">Info</a>
+    </nav>
+    <div class="menu-overlay__contact">
+        <span>studio@christianneitzel.com</span>
+        <span>@christian_neitzel</span>
     </div>
+</div>
 
-<script>
-    // Image data - same as your main portfolio
-    const images = [
-        'ChristianNeitzel_NORA_SmokeSmoke-1.png',
-        'ChristianNeitzel__Anna_Corridor-1.jpg',
-        'ChristianNeitzel__Anna_Corridor-4.jpg',
-        'ChristianNeitzel__Anna_Corridor-3.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-38.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-27.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-25.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-24.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-23.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-22.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-17.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-12.jpg',
-        'ChristianNeitzel_Tanja_Sep25_revised02-6.jpg',
-        'ChristianNeitzel_NoraH_revised-7.jpg',
-        'ANNA_WU-37.jpg',
-        'ANNA_WU-1.jpg',
-        'Erroe_25-28.jpg',
-        'Erroe_25-16.jpg',
-        'ChristianNeitzel_Chris-Blitz_Oct25..jpg',
-         'Pauli_Tongue_revision_color.jpg' 
-    ];
+    <section class="hero" id="hero">
+        <div class="hero__wordmark" id="heroWordmark">
+            <h1>AMAZE PICS <br class="mobile-only">FOR AMAZE PEOPLE</h1>
+            <p class="tagline">VIENNA — WORLDWIDE</p>
+        </div>
+      <figure class="hero__image" id="heroSlideshow">
+    <img class="hero__slide is-active" src="images_carousel/ChristianNeitzel_Frau-Neitzel_may26_17_TR.jpg" alt="" fetchpriority="high">
+    <img class="hero__slide" src="images_carousel/ChristiaNeitzel_HiroHato_Feb26-1.jpg" alt="" loading="lazy">
+    <img class="hero__slide" src="images_carousel/Tanja_Schrei_RT_01.jpg" alt="" loading="lazy">
+    <img class="hero__slide" src="images_carousel/ChristianNeitzel_Anna_Sunglasses_1b.jpg" alt="" loading="lazy">
+    <img class="hero__slide" src="images_carousel/ChristianNeitzel_Paul_cig26-RT.jpg" alt="" loading="lazy">
+</figure>
+    </section>
 
-    const slideshow = document.getElementById('slideshow');
-    let currentSlide = 0;
+    <main id="work">
+         <article class="frame frame--pair" data-shoot="moritz-rax">
+        <figure class="frame__image">
+            <img src="images/portrait/moritz-rax/christianneitzel_moritz_rax-1.jpg"
+                 alt="Moritz" loading="lazy">
+        </figure>
+        <figure class="frame__image">
+            <img src="images/portrait/moritz-rax/christianneitzel_moritz_rax-2.jpg"
+                 alt="Moritz" loading="lazy">
+        </figure>
 
-    // Load all images
-    images.forEach((imageName, index) => {
-        const img = document.createElement('img');
-        img.src = `images/${imageName}`;
-        img.alt = 'Photography by Christian Neitzel';
-        if (index === 0) img.classList.add('active');
-        slideshow.appendChild(img);
-    });
+    </article>
+        <article class="frame frame--right frame--medium frame--vertical" data-shoot="selina-reaktor">
+    <figure class="frame__image">
+        <img src="images/portrait/selina-reaktor/christianneitzel_selina-reaktor-1.jpg"
+             alt="Selina — Reaktor Wien" loading="lazy">
+    </figure>
+</article>
+<article class="frame frame--left frame--medium frame--vertical" data-shoot="hirohato-bridge">
+    <figure class="frame__image">
+        <img src="images/portrait/hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-8.jpg"
+             alt="Hiro — Bridge" loading="lazy">
+    </figure>
+</article>
 
-    // Auto-advance slideshow every 1.5 seconds
-    function nextSlide() {
-        const allImages = slideshow.querySelectorAll('img');
-        allImages[currentSlide].classList.remove('active');
+<article class="frame frame--pair" data-shoot="anna-albertina">
+     <figure class="frame__image">
+        <img src="images/portrait/anna/anna-albertina/christianneitzel_anna-albertina-4.jpg"
+             alt="Anna — Albertina" loading="lazy">
+    </figure>
+    <figure class="frame__image">
+        <img src="images/portrait/anna/anna-albertina/christianneitzel_anna-albertina-1.jpg"
+             alt="Anna — Albertina" loading="lazy">
+    </figure>
+   
+</article>
+
+<article class="frame frame--center frame--medium frame--vertical" data-shoot="hiro-inside">
+    <figure class="frame__image">
+        <img src="images/portrait/hiro-hato/hiro-inside/christianneitzel_hiro-inside-1.jpg"
+             alt="Hiro — Inside" loading="lazy">
+    </figure>
+</article>
+        <article class="frame frame--pair" data-shoot="anna-chair">
+    <figure class="frame__image">
+        <img src="images/portrait/anna/anna-chair/christianneitzel_anna-chair-8.jpg"
+             alt="Anna — Chair" loading="lazy">
+    </figure>
+     <figure class="frame__image">
+        <img src="images/portrait/anna/anna-chair/christianneitzel_anna-chair-2.jpg"
+             alt="Anna — Chair" loading="lazy">
+    </figure>
+</article>
+<article class="frame frame--left frame--medium frame--vertical" data-shoot="theresa-floor">
+    <figure class="frame__image">
+        <img src="images/portrait/theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-1.jpg"
+             alt="Theresa — Floor" loading="lazy">
+    </figure>
+</article>
+       <article class="frame frame--right frame--medium frame--vertical" data-shoot="anna-sunglasses">
+    <figure class="frame__image">
+        <img src="images/portrait/anna/anna-sunglasses/christianneitzel_anna-sunglasses-2.jpg"
+             alt="Anna — Sunglasses" loading="lazy">
+    </figure>
+</article>
+
+<article class="frame frame--pair" data-shoot="paul">
+    <figure class="frame__image">
+        <img src="images/portrait/paul-kitzmueller/christianneitzel_paul-portrait-1.jpg"
+             alt="Paul" loading="lazy">
+    </figure>
+    <figure class="frame__image">
+        <img src="images/portrait/paul-kitzmueller/christianneitzel_paul-portrait-3.jpg"
+             alt="Paul" loading="lazy">
+    </figure>
+</article>    
+<article class="frame frame--pair" data-shoot="theresa-tights">
+    <figure class="frame__image">
+        <img src="images/portrait/theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-8.jpg"
+             alt="Theresa — Tights" loading="lazy">
+    </figure>
+    <figure class="frame__image">
+        <img src="images/portrait/theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-6.jpg"
+             alt="Theresa — Tights" loading="lazy">
+    </figure>
+</article>
+        <article class="frame frame--center frame--medium frame--vertical" data-shoot="liam">
+    <figure class="frame__image">
+        <img src="images/portrait/liam-xy/christianneitzel_liam-1.jpg"
+             alt="Liam XY" loading="lazy">
+    </figure>
+</article>
+<article class="frame frame--pair" data-shoot="tanja">
+    <figure class="frame__image">
+        <img src="images/portrait/tanja-rentenberger/christianneitzel_tanja-rentenberger-12.jpg"
+             alt="Tanja" loading="lazy">
+    </figure>
+    <figure class="frame__image">
+        <img src="images/portrait/tanja-rentenberger/christianneitzel_tanja-rentenberger-13.jpg"
+             alt="Tanja" loading="lazy">
+    </figure>
+</article>
+    </main>
+
+    <footer class="site-footer" id="contact">
+        <div class="site-footer__inner">
+          
+            <p class="site-footer__line">Vienna — Worldwide</p>
+            <div class="site-footer__line"> <a href="https://instagram.com/christian_neitzel" target="_blank">@christian_neitzel</a></div>
+            <div class="site-footer__line"> <a href="mailto:studio@christianneitzel.com">studio@christianneitzel.com</a></div>
+    
         
-        currentSlide = (currentSlide + 1) % images.length;
-        
-        allImages[currentSlide].classList.add('active');
-    }
+        </div>
+    </footer>
 
-    let autoPlayInterval = setInterval(nextSlide, 1500);
+   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">close</button>
+    <div class="lightbox__content">
+        <img id="lightboxImg" src="" alt="">
+    </div>
+    <div class="lightbox__meta" id="lightboxMeta"></div>
+</div>
 
-    // Click to advance
-    slideshow.addEventListener('click', () => {
-        clearInterval(autoPlayInterval);
-        nextSlide();
-        autoPlayInterval = setInterval(nextSlide, 1500);
-    });
+<div class="disco-cursor" id="discoCursor" aria-hidden="true"></div>
+<div class="dim-overlay" aria-hidden="true"></div>
 
-    // Keyboard arrow navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            clearInterval(autoPlayInterval);
-            nextSlide();
-            autoPlayInterval = setInterval(nextSlide, 1500);
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            clearInterval(autoPlayInterval);
-            prevSlide();
-            autoPlayInterval = setInterval(nextSlide, 1500);
-        }
-    });
-
-    function prevSlide() {
-        const allImages = slideshow.querySelectorAll('img');
-        allImages[currentSlide].classList.remove('active');
-        
-        currentSlide = (currentSlide - 1 + images.length) % images.length;
-        
-        allImages[currentSlide].classList.add('active');
-    }
-</script>
+ <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

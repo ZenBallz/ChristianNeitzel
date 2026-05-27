@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /events.html
+
+Sitemap: https://christianneitzel.com/sitemap.xml
