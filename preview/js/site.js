@@ -505,12 +505,17 @@ document.querySelectorAll('.frame[data-shoot]').forEach((frame) => {
     
     // Mobile indicator — image count in top-right of each frame
     const shoot = SHOOTS[frame.dataset.shoot];
-    if (shoot) {
-        const indicator = document.createElement('div');
-        indicator.className = 'frame__indicator';
-        indicator.textContent = `1 / ${shoot.images.length}`;
-        frame.appendChild(indicator);
-    }
+  if (shoot) {
+    const indicator = document.createElement('div');
+    indicator.className = 'frame__indicator';
+    
+    const label = document.createElement('span');
+    label.className = 'frame__indicator-label';
+    label.textContent = `1 / ${shoot.images.length}`;
+    
+    indicator.appendChild(label);
+    frame.appendChild(indicator);
+}
 });
     if (lightbox && lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
@@ -653,6 +658,7 @@ function runIntro() {
 requestAnimationFrame(runIntro);
 
 /* ---------- Hero slideshow ---------- */
+/* ---------- Hero slideshow ---------- */
 function startSlideshow() {
     const slides = document.querySelectorAll('.hero__slide');
     if (slides.length < 2) return;
@@ -661,18 +667,11 @@ function startSlideshow() {
     const HOLD_MS = 2500;
     let intervalId = null;
     
-    function goToSlide(nextIndex) {
+    function next() {
+        const nextIndex = (currentIndex + 1) % slides.length;
         slides[currentIndex].classList.remove('is-active');
         slides[nextIndex].classList.add('is-active');
         currentIndex = nextIndex;
-    }
-    
-    function next() {
-        goToSlide((currentIndex + 1) % slides.length);
-    }
-    
-    function prev() {
-        goToSlide((currentIndex - 1 + slides.length) % slides.length);
     }
     
     function startInterval() {
@@ -686,30 +685,15 @@ function startSlideshow() {
     
     startInterval();
     
-    // Touch swipe on the hero image
+    // Tap/click to advance
     const heroImg = document.querySelector('.hero__image');
     if (heroImg) {
-        let touchStartX = 0;
-        let touchStartY = 0;
-        
-        heroImg.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-        
-        heroImg.addEventListener('touchend', (e) => {
-            const dx = e.changedTouches[0].clientX - touchStartX;
-            const dy = e.changedTouches[0].clientY - touchStartY;
-            // Horizontal swipe wins (must be > 50px, and dx > dy to avoid scroll triggering)
-            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-                if (dx < 0) next();
-                else prev();
-                resetInterval();  // give them full hold time on the chosen slide
-            }
-        }, { passive: true });
+        heroImg.addEventListener('click', () => {
+            next();
+            resetInterval();
+        });
     }
 }
-
 /* ---------- Hover cursor (small black dot) ---------- */
 const discoCursor = document.getElementById('discoCursor');
 
@@ -740,10 +724,9 @@ if (discoCursor && window.matchMedia('(hover: hover)').matches) {
         }
     }
     
-    const cursorTargets = document.querySelectorAll(
-    '.frame__image img, .site-nav a, .site-header__wordmark, .info-section a, .site-footer a, .menu-trigger, .lightbox__close'
+const cursorTargets = document.querySelectorAll(
+    '.hero__image, .frame__image img, .site-nav a, .site-header__wordmark, .info-section a, .site-footer a, .menu-trigger, .lightbox__close'
 );
-
 cursorTargets.forEach((el) => {
     el.addEventListener('mouseenter', () => {
         discoCursor.classList.add('is-active');

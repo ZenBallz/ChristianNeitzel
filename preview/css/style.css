@@ -66,7 +66,7 @@
     font-size: 1.5rem;
     font-weight: 700;
         letter-spacing: -0.02em;
-        line-height: 1.05;
+        line-height: 1;
     } 
     .hero__wordmark .mobile-only { display: none; }
     @media (max-width: 768px) {
@@ -91,6 +91,7 @@
     max-height: 80vh;
     overflow: hidden;
     aspect-ratio: 3/4;
+    cursor: none;
     }
 
     .hero__image img {
@@ -404,42 +405,40 @@
 
         .hero__wordmark { transition: none !important; }
     }
-    /* ---------- Mobile menu trigger (dots) ---------- */
-    .menu-trigger {
-        display: none; /* hidden by default, shown on mobile */
-        position: fixed;
-        font-weight: 700;
-        top: 5.5px;
-        right: 12px;
-        font-size: .685rem;
-        width: 44px;
-        height: 44px;
-        padding-left: 4px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 100;
-        opacity: 1;
-        pointer-events: auto;
-        transition: opacity 0.3s ease;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 4px;
-    }
+    /* mobile menu */
+  .menu-trigger {
+    display: none;                 /* shown on mobile only */
+    position: fixed;
+    top: 1rem;                     /* matches site-header top */
+    right: 1rem;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+    font-family: inherit;
+}
 
-    .menu-trigger.is-visible {
-        opacity: 1;
-        pointer-events: auto;
-    }
+.menu-trigger__label {
+    display: block;
+    font-size: 0.685rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #000;
+    transform: translateY(5.5px);   /* same trick — tweak to taste */
+}
 
-    .menu-trigger__dot {
+@media (max-width: 768px) {
+    .menu-trigger { 
         display: block;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: #000;
     }
+}
 
     /* ---------- Mobile menu overlay ---------- */
     .menu-overlay {
@@ -796,32 +795,39 @@
         }
     }
 
-    .frame__indicator {
-        display: none;
-    }
+.frame__indicator {
+    display: none;  /* hidden on desktop */
+}
 
-    @media (max-width: 768px) {
-        .frame {
-            position: relative;        /* anchor for indicator */
-        }
-        
-        .frame__indicator {
-            display: block;
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            font-size: 7px;
-            font-weight: 700 !important;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-            height: 12px;
-            padding-top: 2px;
-            width: auto;
-            padding-left: 6px;
-            padding-right: 6px;
-            border-radius: 6px;
-            background-color: #00000030;
+@media (max-width: 768px) {
+    .frame {
+        position: relative;
+    }
+    
+    .frame__indicator {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        height: 14px;
+        padding: 0 7px;
+        border-radius: 7px;
+        background-color: #00000030;
         backdrop-filter: blur(4px);
-            z-index: 10;
-            pointer-events: none;
-        }
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 10;
+        pointer-events: none;
+    }
+    
+    .frame__indicator-label {
+        display: block;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        transform: translateY(0.5px);   /* nudge to optical center */
+    }
+}
