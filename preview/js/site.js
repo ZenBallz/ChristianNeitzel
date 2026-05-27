@@ -561,24 +561,23 @@ window.addEventListener('load', () => {
         }
 
         /* ---------- Frame reveal on scroll ---------- */
-        gsap.utils.toArray('.frame').forEach((frameEl) => {
-            const imageWrap = frameEl.querySelector('.frame__image');
-            const img = frameEl.querySelector('img');
-            if (!imageWrap || !img) return;
+   gsap.utils.toArray('.frame').forEach((frameEl) => {
+    const imageWraps = frameEl.querySelectorAll('.frame__image');
+    if (!imageWraps.length) return;
 
-           gsap.timeline({
-    scrollTrigger: {
-        trigger: frameEl,
-        start: 'top 85%',
-        end: 'top 60%',
-        scrub: 1,
-    },
-})
-.fromTo(imageWrap,
-    { opacity: 0, y: 0 },
-    { opacity: 1, y: 0, ease: 'none' }
-);
-        });
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: frameEl,
+            start: 'top 85%',
+            end: 'top 60%',
+            scrub: 1,
+        },
+    })
+    .fromTo(imageWraps,
+        { opacity: 0 },
+        { opacity: 1, ease: 'none' }
+    );
+});
 
         ScrollTrigger.refresh();
     }

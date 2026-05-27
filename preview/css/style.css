@@ -67,7 +67,12 @@ body { padding-top:0} /* offset for staging banner */
   font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.05;
+} 
+.hero__wordmark .mobile-only { display: none; }
+@media (max-width: 768px) {
+   .hero__wordmark .mobile-only { display: inline; }
 }
+
 
 .hero__wordmark .tagline {
   font-size: 0.685rem;
@@ -326,9 +331,7 @@ text-align: left;
         padding: 8vh 16px 24vh;
         gap: 4vh;
     }
-    
-    .hero__wordmark { width: 100%; }
-    
+ 
     .hero__image {
         width: 100%;
         max-width: none;
@@ -379,8 +382,10 @@ text-align: left;
 .site-footer__inner div:nth-child(2) {margin-left:auto; margin-right: auto;padding-bottom: .25rem;
     color: #999; }
 .site-footer__inner div:last-child  { margin-left: auto; margin-right: auto;    color: #999;  }
-}
+
 .hide-on-mobile {display: none;}
+}
+
 
 /* ---------- Reduced motion: hard swap, no fades ---------- */
 @media (prefers-reduced-motion: reduce) {
