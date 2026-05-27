@@ -502,6 +502,15 @@ document.querySelectorAll('.frame[data-shoot]').forEach((frame) => {
             openLightbox(frame.dataset.shoot, frame);
         }
     });
+    
+    // Mobile indicator — image count in top-right of each frame
+    const shoot = SHOOTS[frame.dataset.shoot];
+    if (shoot) {
+        const indicator = document.createElement('div');
+        indicator.className = 'frame__indicator';
+        indicator.textContent = `1 / ${shoot.images.length}`;
+        frame.appendChild(indicator);
+    }
 });
     if (lightbox && lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
@@ -561,9 +570,15 @@ window.addEventListener('load', () => {
         }
 
         /* ---------- Frame reveal on scroll ---------- */
-   gsap.utils.toArray('.frame').forEach((frameEl) => {
+gsap.utils.toArray('.frame').forEach((frameEl) => {
     const imageWraps = frameEl.querySelectorAll('.frame__image');
+    const indicator = frameEl.querySelector('.frame__indicator');
     if (!imageWraps.length) return;
+
+    // Combine images + indicator into one targets list
+    const targets = indicator 
+        ? [...imageWraps, indicator]
+        : [...imageWraps];
 
     gsap.timeline({
         scrollTrigger: {
@@ -573,7 +588,7 @@ window.addEventListener('load', () => {
             scrub: 1,
         },
     })
-    .fromTo(imageWraps,
+    .fromTo(targets,
         { opacity: 0 },
         { opacity: 1, ease: 'none' }
     );
@@ -644,13 +659,55 @@ function startSlideshow() {
     
     let currentIndex = 0;
     const HOLD_MS = 2500;
+    let intervalId = null;
     
-    setInterval(() => {
-        const next = (currentIndex + 1) % slides.length;
+    function goToSlide(nextIndex) {
         slides[currentIndex].classList.remove('is-active');
-        slides[next].classList.add('is-active');
-        currentIndex = next;
-    }, HOLD_MS);
+        slides[nextIndex].classList.add('is-active');
+        currentIndex = nextIndex;
+    }
+    
+    function next() {
+        goToSlide((currentIndex + 1) % slides.length);
+    }
+    
+    function prev() {
+        goToSlide((currentIndex - 1 + slides.length) % slides.length);
+    }
+    
+    function startInterval() {
+        intervalId = setInterval(next, HOLD_MS);
+    }
+    
+    function resetInterval() {
+        if (intervalId) clearInterval(intervalId);
+        startInterval();
+    }
+    
+    startInterval();
+    
+    // Touch swipe on the hero image
+    const heroImg = document.querySelector('.hero__image');
+    if (heroImg) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        heroImg.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        heroImg.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            // Horizontal swipe wins (must be > 50px, and dx > dy to avoid scroll triggering)
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                if (dx < 0) next();
+                else prev();
+                resetInterval();  // give them full hold time on the chosen slide
+            }
+        }, { passive: true });
+    }
 }
 
 /* ---------- Hover cursor (small black dot) ---------- */

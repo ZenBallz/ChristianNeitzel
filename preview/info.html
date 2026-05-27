@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +9,28 @@
 </head>
 <body>
 
-    <header class="site-header" id="siteHeader" aria-hidden="true">
+<header class="site-header" id="siteHeader" aria-hidden="true">
         <a href="index.html" class="site-header__wordmark">CHRISTIAN NEITZEL PHOTOGRAPHY</a>
     </header>
 
     <nav class="site-nav" id="siteNav" aria-hidden="true">
         <a href="index.html">Work</a>
+        <a href="info.html">Info</a>
+    </nav>
+<button class="menu-trigger" id="menuTrigger" aria-label="Open menu" aria-expanded="false">
+MENU</button>
+
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <button class="menu-overlay__close" id="menuOverlayClose" aria-label="Close menu">close</button>
+    <nav class="menu-overlay__links">
+        <a href="index.html">work</a>
         <a href="#info">Info</a>
     </nav>
-
-    <button class="menu-trigger" id="menuTrigger" aria-label="Open menu" aria-expanded="false">
-        <span class="menu-trigger__dot"></span>
-        <span class="menu-trigger__dot"></span>
-        <span class="menu-trigger__dot"></span>
-    </button>
-
-    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-        <button class="menu-overlay__close" id="menuOverlayClose" aria-label="Close menu">close</button>
-        <nav class="menu-overlay__links">
-            <a href="index.html">WORK</a>
-            <a href="#info">Info</a>
-        </nav>
-        <div class="menu-overlay__contact">
-            <span>studio@christianneitzel.com</span>
-            <span>@christian_neitzel</span>
-        </div>
+    <div class="menu-overlay__contact">
+        <span>studio@christianneitzel.com</span>
+        <span>@christian_neitzel</span>
     </div>
+</div>
 
    <section class="info-hero" id="info">
     <div class="info-hero__grid">
