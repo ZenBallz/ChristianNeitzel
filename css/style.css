@@ -6,7 +6,9 @@
     }
 
     html {
-        /* scroll-behavior: smooth; */
+        scroll-behavior: smooth; 
+            -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     }
 
     body {
@@ -293,16 +295,17 @@
         transform: translateX(-50%);
         color: #000;
         font-size: 0.685rem;
-        letter-spacing: 0.05em;
+        letter-spacing: -0.05em;
         text-transform: uppercase;
         font-weight: 700;
         z-index: 201;
-        white-space: nowrap;
+     white-space: nowrap;   /* was nowrap */
         pointer-events: none;
     }
 
     .lightbox__meta-sep {
-        margin: 0 1.5rem;
+        font-size: 0.685rem;
+        margin: 0 .75rem;
         opacity: 1;
         font-weight: 700;
     }
