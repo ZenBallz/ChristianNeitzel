@@ -192,6 +192,23 @@ const SHOOTS = {
             'christianneitzel_hiro-inside-3.jpg',
         ],
     },
+     'fanny-volksgarten': {
+        title: 'Fanny Altenburger — Softness',
+        date: '2026',
+        folder: 'portrait/fanny-altenburger/fanny-volksgarten',
+        cover: 'christianneitzel_fanny_may26-9.jpg',
+        images: [
+            'christianneitzel_fanny_may26-5.jpg',
+            'christianneitzel_fanny_may26-3.jpg',
+            'christianneitzel_fanny_may26-4.jpg',
+            'christianneitzel_fanny_may26-6.jpg',
+            'christianneitzel_fanny_may26-7.jpg',
+            'christianneitzel_fanny_may26-8.jpg',
+            'christianneitzel_fanny_may26-9.jpg',
+            'christianneitzel_fanny_may26-10.jpg',
+            'christianneitzel_fanny_may26-11.jpg',
+        ],
+    },
     'anna-sunglasses': {
         title: 'Anna Transformation',
         date: '2025',
