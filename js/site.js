@@ -86,7 +86,7 @@ document.addEventListener('keydown', (e) => {
     /* ---------- Lightbox ---------- */
 const SHOOTS = {
     'moritz-rax': {
-        title: 'Moritz at Rax Alpe',
+        title: 'Moritz "Peak Composure" at Rax Alpe',
         date: '2025',
         folder: 'portrait/moritz-rax',
         cover: 'christianneitzel_moritz_rax-1.jpg',
@@ -318,6 +318,30 @@ const SHOOTS = {
             'christianneitzel_mochi-7.jpg',
         ],
     },
+    'artofconnection-march': {
+        title: 'Art of Connection',
+        date: '2026',
+        folder: 'events/artofconnection-march',
+        cover: 'ChristianNeitzel_ArtofConnection_Mar26-24.jpg',
+        images: [
+            'ChristianNeitzel_ArtofConnection_Mar26-24.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-44.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-17.jpg',
+             'ChristianNeitzel_ArtofConnection_Mar26-50.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-18.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-19.jpg',
+            'ChristianNeitzel_ArtOfConnection-4.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-20.jpg',
+              'ChristianNeitzel_ArtOfConnection-3.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-26.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-30.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-32.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-33.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-41.jpg',    
+            'ChristianNeitzel_ArtofConnection_Mar26-47.jpg',
+            'ChristianNeitzel_ArtofConnection_Mar26-48.jpg',
+        ],
+    },
     'barbasso': {
         title: 'Bar Basso',
         date: '2026',
@@ -349,10 +373,11 @@ const SHOOTS = {
         folder: 'events/magika-1stofmay',
         cover: 'christianneitzel_magika-drahthaus-1stofmay-1.jpg',
         images: [
+            'christianneitzel_magika-drahthaus-1stofmay-3.jpg',
             'christianneitzel_magika-drahthaus-1stofmay-16.jpg',
             'christianneitzel_magika-drahthaus-1stofmay-1.jpg',
             'christianneitzel_magika-drahthaus-1stofmay-2.jpg',
-            'christianneitzel_magika-drahthaus-1stofmay-3.jpg',
+           
             'christianneitzel_magika-drahthaus-1stofmay-4.jpg',
             'christianneitzel_magika-drahthaus-1stofmay-5.jpg',
             'christianneitzel_magika-drahthaus-1stofmay-6.jpg',
