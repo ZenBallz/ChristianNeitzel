@@ -402,13 +402,12 @@ const SHOOTS = {
         folder: 'events/soul-praterallee',
         cover: 'christianneitzel_soul_dieallee_encore-13.jpg',
         images: [
+            'christianneitzel_soul_dieallee_encore-30.jpg',
             'christianneitzel_soul_dieallee_encore-2.jpg',
             'christianneitzel_soul_dieallee_encore-1.jpg',
-           
             'christianneitzel_soul_dieallee_encore-3.jpg',
             'christianneitzel_soul_dieallee_encore-4.jpg',
-            'christianneitzel_soul_dieallee_encore-5.jpg',
-            'christianneitzel_soul_dieallee_encore-6.jpg',
+           'christianneitzel_soul_dieallee_encore-6.jpg',
             'christianneitzel_soul_dieallee_encore-7.jpg',
             'christianneitzel_soul_dieallee_encore-8.jpg',
             'christianneitzel_soul_dieallee_encore-9.jpg',
@@ -432,7 +431,7 @@ const SHOOTS = {
             'christianneitzel_soul_dieallee_encore-27.jpg',
             'christianneitzel_soul_dieallee_encore-28.jpg',
             'christianneitzel_soul_dieallee_encore-29.jpg',
-            'christianneitzel_soul_dieallee_encore-30.jpg',
+           
             'christianneitzel_soul_dieallee_encore-31.jpg',
             'christianneitzel_soul_dieallee_encore-32.jpg',
             'christianneitzel_soul_dieallee_encore-33.jpg',
