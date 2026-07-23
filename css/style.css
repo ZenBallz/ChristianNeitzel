@@ -666,7 +666,7 @@
     }
 
 
-    //* ---------- Info page ---------- */
+    /* ---------- Info page ---------- */
 
     html, body {
         min-height: 100%;
@@ -834,3 +834,136 @@
         transform: translateY(0px);   /* nudge to optical center */
     }
 }
+ /* ---------- Pricing page (scoped) ---------- */
+
+        .pricing-hero {
+            min-height: 100vh;
+            padding: 8rem 0 6rem;
+        }
+
+        .pricing-hero__grid {
+            display: grid;
+            grid-template-columns: 3fr 7fr 1fr 10fr 1fr 10fr 3fr;
+            row-gap: 4rem;
+            width: 100%;
+        }
+
+        .pricing-hero__tagline {
+            grid-column: 2 / -2;
+            padding-bottom: 0rem;
+        }
+
+        /* Column assignments per row of content */
+        .pricing-col--left  { grid-column: 2 / 3; }
+        .pricing-col--mid   { grid-column: 4 / 5; }
+        .pricing-col--right { grid-column: 6 / 7; }
+        .pricing-col--wide  { grid-column: 4 / -2; }
+
+        .pricing-block { display: flex; flex-direction: column; gap: 3rem; }
+
+        /* Rate rows: service — dotted leader — price */
+        .rate-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rate-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5em;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .rate-list .rate-name { white-space: nowrap; }
+
+        .rate-list .rate-dots {
+            flex: 1;
+            border-bottom: 1px dotted #000;
+            transform: translateY(-0.2em);
+            min-width: 1.5rem;
+        }
+
+        .rate-list .rate-price { white-space: nowrap; }
+
+        .rate-note {
+            font-size: 0.685rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #808080;
+            margin-top: 1em;
+            line-height: 1;
+        }
+
+        .package-desc {
+            font-size: 0.685rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        color: #808080;
+            line-height: 1;
+            margin-top: 1em;
+            margin-bottom: 1em !important;
+        }
+
+        /* FAQ — native details/summary, styled to match */
+        .faq details {
+            border-top: 1px solid #000;
+            padding: 0.75rem 0;
+        }
+
+        .faq details:last-child { border-bottom: 1px solid #000; }
+
+        .faq summary {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .faq summary::-webkit-details-marker { display: none; }
+
+        .faq summary::after {
+            content: "+";
+            font-weight: 700;
+            flex: 0 0 auto;
+        }
+
+        .faq details[open] summary::after { content: "–"; }
+
+        .faq details p {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #808080;
+            letter-spacing: -0.01em;
+            line-height: 1;
+            margin-top: 0.75em;
+            max-width: 60ch;
+        }
+
+        .faq details p + p { margin-top: 0.6rem; }
+
+        /* Booking line */
+        .pricing-cta a { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .pricing-hero {
+                min-height: 0;
+                padding: 4rem 1rem 5rem;
+            }
+
+            .pricing-hero__grid {
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .rate-list li { font-size: 0.875rem; }
+        }
