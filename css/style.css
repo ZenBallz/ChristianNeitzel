@@ -967,3 +967,14 @@
 
             .rate-list li { font-size: 0.875rem; }
         }
+
+        /* Info page intro — hidden until site.js reveals it */
+html.js .info-hero__tagline,
+html.js .info-hero__image,
+html.js .info-hero .info-section,
+html.js .page-info .site-footer {
+    opacity: 0;
+    animation: reveal-failsafe 0s 3s forwards;
+}
+
+@keyframes reveal-failsafe { to { opacity: 1; } }
