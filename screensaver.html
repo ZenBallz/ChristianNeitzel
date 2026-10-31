@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Christian Neitzel — Screensaver</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    cursor: none;
+  }
+  .frame {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 6vw;          /* breathing room around each photo */
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 1.6s ease-in-out;
+  }
+  .frame.on { opacity: 1; }
+  .frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;       /* never crop */
+    display: block;
+  }
+</style>
+</head>
+<body>
+<div class="frame" id="a"><img alt=""></div>
+<div class="frame" id="b"><img alt=""></div>
+
+<script>
+  /* ---- Settings ---- */
+  const BASE = "images/portrait/";   // path from the page to the portrait folder
+  const HOLD = 8000;                 // ms each photo stays up
+
+  /* ---- Images (from images/portrait, Takeout left out) ---- */
+  const IMAGES = [
+    "anna/anna-albertina/christianneitzel_anna-albertina-1.jpg",
+    "anna/anna-albertina/christianneitzel_anna-albertina-2.jpg",
+    "anna/anna-albertina/christianneitzel_anna-albertina-3.jpg",
+    "anna/anna-albertina/christianneitzel_anna-albertina-4.jpg",
+    "anna/anna-albertina/christianneitzel_anna-albertina-5.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-1.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-2.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-3.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-4.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-5.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-6.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-7.jpg",
+    "anna/anna-chair/christianneitzel_anna-chair-8.jpg",
+    "anna/anna-sunglasses/christianneitzel_anna-sunglasses-1.jpg",
+    "anna/anna-sunglasses/christianneitzel_anna-sunglasses-2.jpg",
+    "anna/anna-sunglasses/christianneitzel_anna-sunglasses-3.jpg",
+    "anna/anna-sunglasses/christianneitzel_anna-sunglasses-4.jpg",
+    "anna/anna-sunglasses/christianneitzel_anna-sunglasses-5.jpg",
+    "anna/anna-sunglasses/christianneitzel_anna-sunglasses-6.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-3.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-4.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-5.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-6.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-7.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-8.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-9.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-10.jpg",
+    "fanny-altenburger/fanny-volksgarten/christianneitzel_fanny_may26-11.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-1.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-2.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-3.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-4.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-5.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-6.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-7.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-8.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-9.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-10.jpg",
+    "hiro-hato/hiro-bridge/christianneitzel_hirohato-bridge-11.jpg",
+    "hiro-hato/hiro-inside/christianneitzel_hiro-inside-1.jpg",
+    "hiro-hato/hiro-inside/christianneitzel_hiro-inside-2.jpg",
+    "hiro-hato/hiro-inside/christianneitzel_hiro-inside-3.jpg",
+    "liam-xy/christianneitzel_liam-1.jpg",
+    "liam-xy/christianneitzel_liam-2.jpg",
+    "liam-xy/christianneitzel_liam-3.jpg",
+    "liam-xy/christianneitzel_liam-4.jpg",
+    "liam-xy/christianneitzel_liam-5.jpg",
+    "liam-xy/christianneitzel_liam-6.jpg",
+    "liam-xy/christianneitzel_liam-7.jpg",
+    "liam-xy/christianneitzel_liam-8.jpg",
+    "liam-xy/christianneitzel_liam-9.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-1.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-2.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-3.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-4.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-5.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-6.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-7.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-8.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-9.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-10.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-11.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-12.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-13.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-14.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-15.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-16.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-17.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-18.jpg",
+    "moritz-rax/christianneitzel_moritz_rax-19.jpg",
+    "paul-kitzmueller/christianneitzel_paul-portrait-1.jpg",
+    "paul-kitzmueller/christianneitzel_paul-portrait-2.jpg",
+    "paul-kitzmueller/christianneitzel_paul-portrait-3.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-1.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-2.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-3.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-4.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-5.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-6.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-7.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-8.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-9.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-10.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-11.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-12.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-13.jpg",
+    "selina-reaktor/christianneitzel_selina-reaktor-14.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-1.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-2.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-3.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-4.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-5.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-6.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-7.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-8.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-9.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-10.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-11.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-12.jpg",
+    "tanja-rentenberger/christianneitzel_tanja-rentenberger-13.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-1.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-2.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-3.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-4.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-5.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-6.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-7.jpg",
+    "theresa-muehlegger/theresa-floor/christianneitzel_theresa-floor-8.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-1.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-2.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-3.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-4.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-5.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-6.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-7.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-8.jpg",
+    "theresa-muehlegger/theresa-tights/christianneitzel_theresa-tights-9.jpg"
+  ];
+
+  /* Shuffle, show every photo once, then reshuffle (no repeats back-to-back) */
+  let queue = [], last = null;
+  function next() {
+    if (!queue.length) {
+      queue = IMAGES.slice();
+      for (let i = queue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [queue[i], queue[j]] = [queue[j], queue[i]];
+      }
+      if (queue[0] === last && queue.length > 1) queue.push(queue.shift());
+    }
+    last = queue.shift();
+    return BASE + last;
+  }
+
+  const frames = [document.getElementById("a"), document.getElementById("b")];
+  let current = 0;
+
+  function show() {
+    const incoming = frames[1 - current];
+    const img = incoming.querySelector("img");
+    const pre = new Image();
+    pre.onload = () => {
+      img.src = pre.src;
+      incoming.classList.add("on");
+      frames[current].classList.remove("on");
+      current = 1 - current;
+      setTimeout(show, HOLD);
+    };
+    pre.onerror = () => setTimeout(show, 200);   // skip a missing file
+    pre.src = next();
+  }
+
+  show();
+</script>
+</body>
+</html>
